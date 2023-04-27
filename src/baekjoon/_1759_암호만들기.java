@@ -2,7 +2,7 @@ package baekjoon;
 
 import java.util.Scanner;
 
-public class _1795_암호만들기 {
+public class _1759_암호만들기 {
 	static int l, c;	//출력해야할 알파벳 개수, 입력받을 알파벳 개수
 	static char[] pw;	//알파벳을 한자씩 저장
 	public static void main(String[] args) {
