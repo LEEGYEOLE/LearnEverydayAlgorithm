@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int n = scanner.nextInt(); // 동전 종류 수
+        int k = scanner.nextInt(); // 목표 금액
+
+        int[] coins = new int[n]; // 동전의 가치를 저장할 배열
+        for (int i = 0; i < n; i++) {
+            coins[i] = scanner.nextInt();
+        }
+
+        int count = 0; // 필요한 동전의 최소 개수를 저장할 변수
+
+        for (int i = n - 1; i >= 0; i--) {
+            if (k >= coins[i]) {
+                count += k / coins[i];
+                k %= coins[i];
+            }
+        }
+
+        System.out.println(count);
+    }
+}
