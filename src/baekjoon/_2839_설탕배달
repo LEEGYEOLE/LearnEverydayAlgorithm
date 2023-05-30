@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt(); // 배달해야 할 설탕의 무게
+
+        int count = 0; // 봉지의 최소 개수
+
+        while (true) {
+            if (n % 5 == 0) { // 5킬로그램 봉지로 정확하게 나누어 떨어지는 경우
+                count += n / 5;
+                break;
+            } else if (n < 3) { // 3킬로그램보다 작은 무게인데 나누어 떨어지지 않는 경우
+                count = -1;
+                break;
+            }
+
+            // 5킬로그램 봉지로 나누어 떨어지지 않는 경우 3킬로그램 봉지를 하나씩 감소시키며 계산
+            n -= 3;
+            count++;
+        }
+
+        System.out.println(count);
+    }
+}
