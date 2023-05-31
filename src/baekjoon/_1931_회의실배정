@@ -1,0 +1,55 @@
+import java.util.*;
+
+public class MeetingRoom {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt(); // 회의의 수
+
+        // 회의 정보를 담을 리스트
+        List<Meeting> meetings = new ArrayList<>();
+
+        // 회의 정보 입력 받기
+        for (int i = 0; i < n; i++) {
+            int start = scanner.nextInt(); // 시작 시간
+            int end = scanner.nextInt(); // 끝나는 시간
+            meetings.add(new Meeting(start, end));
+        }
+
+        // 끝나는 시간을 기준으로 회의를 오름차순 정렬
+        Collections.sort(meetings, Comparator.comparingInt(Meeting::getEnd));
+
+        int count = 0; // 최대 사용할 수 있는 회의의 개수
+        int endTime = 0; // 이전 회의의 끝나는 시간
+
+        // 회의를 순회하면서 최대 사용 가능한 회의의 개수 계산
+        for (Meeting meeting : meetings) {
+            if (meeting.getStart() >= endTime) {
+                // 현재 회의의 시작 시간이 이전 회의의 끝나는 시간보다 크거나 같으면
+                // 해당 회의를 선택하여 회의실을 사용할 수 있음
+                count++;
+                endTime = meeting.getEnd(); // 끝나는 시간 업데이트
+            }
+        }
+
+        System.out.println(count); // 결과 출력
+    }
+
+    // 회의 정보를 담는 클래스
+    static class Meeting {
+        private int start; // 시작 시간
+        private int end; // 끝나는 시간
+
+        public Meeting(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+
+        public int getStart() {
+            return start;
+        }
+
+        public int getEnd() {
+            return end;
+        }
+    }
+}
