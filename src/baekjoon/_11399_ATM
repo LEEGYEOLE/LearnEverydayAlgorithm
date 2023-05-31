@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class ATM {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt(); // 사람의 수
+
+        // 각 사람이 돈을 인출하는데 걸리는 시간을 담을 배열
+        int[] times = new int[n];
+
+        // 각 사람의 돈을 인출하는데 걸리는 시간 입력 받기
+        for (int i = 0; i < n; i++) {
+            times[i] = scanner.nextInt();
+        }
+
+        // 돈을 인출하는데 필요한 시간의 합을 계산할 변수
+        int sum = 0;
+
+        // 돈을 인출하는데 필요한 시간을 오름차순으로 정렬
+        Arrays.sort(times);
+
+        // 각 사람이 돈을 인출하는데 필요한 시간의 합 계산
+        for (int i = 0; i < n; i++) {
+            sum += times[i] * (n - i);
+        }
+
+        // 필요한 시간의 합 출력
+        System.out.println(sum);
+    }
+}
